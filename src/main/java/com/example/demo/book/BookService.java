@@ -61,6 +61,28 @@ public class BookService {
         if(!bookRepository.existsById(bookId))
             throw new IllegalStateException("Book with Id " + bookId + " does not exist.");
         else return bookRepository.findBookById(bookId).get();
+    }
 
+    public Boolean borrowBook(Long bookId) {
+        if(!bookRepository.existsById(bookId))
+            throw new IllegalStateException("Book with Id " + bookId + " does not exist.");
+
+        Book book = bookRepository.findBookById(bookId).get();
+        if(book.getAvailableQuantity() > 0)
+        {
+            book.setAvailableQuantity(book.getAvailableQuantity() - 1);
+            bookRepository.save(book);
+            return true;
+        }
+        return false;
+    }
+    public Boolean returnBook(Long bookId) {
+        if(!bookRepository.existsById(bookId))
+          throw new IllegalStateException("Book with Id " + bookId + " does not exist.");
+
+        Book book = bookRepository.findBookById(bookId).get();
+        book.setAvailableQuantity(book.getAvailableQuantity() + 1);
+        bookRepository.save(book);
+        return true;
     }
 }
