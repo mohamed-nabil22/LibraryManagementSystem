@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "f89e1766-cb1d-4fc4-9264-4f3ee38861af",
+		"name": "Book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12554781",
+		"_collection_link": "https://code81.postman.co/workspace/LibraryManagmentSystem~b66223bb-ebe3-481e-bafe-b0ddeed0f86f/collection/12554781-f89e1766-cb1d-4fc4-9264-4f3ee38861af?action=share&source=collection_link&creator=12554781"
+	},
+	"item": [
+		{
+			"name": "GetBookByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/452",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"452"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBook",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "Ahmed",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Quantum Seas\",\r\n  \"language\": \"en\",\r\n  \"edition\": \"2nd\",\r\n  \"isbn\": \"9780143127796\",\r\n  \"publicationYear\": 2024,\r\n  \"summary\": \"Hard sci-fi exploring entanglement across interstellar trade routes.\",\r\n  \"coverImageUrl\": \"https://img.example.org/books/quantum-seas/cover.jpg\",\r\n  \"publisher\": {\r\n    \"name\": \"Stellar Press\",\r\n    \"city\": \"London\",\r\n    \"country\": \"UK\",\r\n    \"website\": \"https://stellarpress.example\"\r\n  },\r\n  \"bookAuthors\": [\r\n    { \"name\": \"Amal\" },\r\n    { \"name\": \"Liam\" }\r\n  ],\r\n  \"categories\": [\r\n    { \"name\": \"SCIENCE_FICTION\" },\r\n    { \"name\": \"TECHNOLOGY\" }\r\n   ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/books/staff/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"staff",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateBook",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/books/52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"52"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBook",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"52"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
