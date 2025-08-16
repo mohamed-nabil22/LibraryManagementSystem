@@ -1,9 +1,10 @@
-package com.example.demo.member;
+package com.example.demo.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -16,17 +17,24 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+    public Member findByUserUsername(String username) {
+        Optional<Member> member = memberRepository.findByUserUsername(username);
+        if(member.isEmpty()) {
+            throw new IllegalStateException("Member with Username " + username + " does not exist.");
+        }
+        return member.get();
+    }
     //Get all members
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
 
     public Member getMemberById(Long id) {
-        Member member = memberRepository.getMemberById(id);
-        if(member == null) {
+        Optional<Member> member = memberRepository.getMemberById(id);
+        if(member.isEmpty()) {
             throw new IllegalStateException("Member with Id " + id + " does not exist.");
         }
-        return member;
+        return member.get();
     }
 
     public void deleteMember(Long id) {
@@ -37,14 +45,14 @@ public class MemberService {
     }
 
     public Member updateMember(Long memberId, Member member) {
-      Member existingMember = memberRepository.getMemberById(memberId);
-      if(existingMember == null) {
+      Optional<Member> existingMember = memberRepository.getMemberById(memberId);
+      if(existingMember.isEmpty()) {
           throw new IllegalStateException("Member with Id " + memberId + " does not exist.");
       }
-      existingMember.setName(member.getName());
-      existingMember.setEmail(member.getEmail());
-      existingMember.setAddress(member.getAddress());
-      existingMember.setPhoneNumber(member.getPhoneNumber());
-      return memberRepository.save(existingMember);
+
+      existingMember.get().setEmail(member.getEmail());
+      existingMember.get().setAddress(member.getAddress());
+      existingMember.get().setPhoneNumber(member.getPhoneNumber());
+      return memberRepository.save(existingMember.get());
     }
 }

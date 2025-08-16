@@ -1,12 +1,11 @@
-package com.example.demo.book;
+package com.example.demo.Book;
 import java.util.List;
-import jakarta.annotation.*;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Entity
 @Getter

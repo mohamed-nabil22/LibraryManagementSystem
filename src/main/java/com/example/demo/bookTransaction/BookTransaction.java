@@ -1,7 +1,7 @@
 package com.example.demo.bookTransaction;
 
-import com.example.demo.book.Book;
-import com.example.demo.member.Member;
+import com.example.demo.Book.Book;
+import com.example.demo.Member.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

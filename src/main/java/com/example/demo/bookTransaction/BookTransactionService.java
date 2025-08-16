@@ -1,10 +1,8 @@
 package com.example.demo.bookTransaction;
 
-import com.example.demo.book.Book;
-import com.example.demo.book.BookService;
-import com.example.demo.member.MemberService;
+import com.example.demo.Book.BookService;
+import com.example.demo.Member.MemberService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
