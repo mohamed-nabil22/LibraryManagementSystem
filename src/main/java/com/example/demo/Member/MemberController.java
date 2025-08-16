@@ -46,7 +46,11 @@ public class MemberController {
         Member member = memberService.findByUserUsername(auth.getName());
         return ResponseEntity.ok(memberService.updateMember(member.getId(), updatedMember));
     }
-
+    @PostMapping("/create")
+    public ResponseEntity<Member> addMember(@RequestBody Member member) {
+        Member newMember = memberService.save(member);
+        return ResponseEntity.ok(newMember);
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(path="/rem/{memberId}")

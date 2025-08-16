@@ -37,6 +37,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/librarian/**").hasAnyRole("ADMIN", "LIBRARIAN")
                         .requestMatchers("/api/staff/**").hasAnyRole("ADMIN", "LIBRARIAN", "STAFF")
                         .requestMatchers("/books/staff/**").hasAnyRole("ADMIN", "LIBRARIAN", "STAFF")
+                        .requestMatchers("/books").permitAll()
+                        .requestMatchers("/books/**").hasAnyRole("ADMIN", "LIBRARIAN", "STAFF")
+                        .requestMatchers("/books/staff/add").hasAnyRole("ADMIN", "LIBRARIAN", "STAFF")
                         .anyRequest().authenticated()  // All other requests must be authenticated
                 )
                 .formLogin(withDefaults())  // Default form login configuration

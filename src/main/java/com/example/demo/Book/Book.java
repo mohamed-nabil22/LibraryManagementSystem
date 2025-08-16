@@ -3,6 +3,7 @@ package com.example.demo.Book;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class Book {
     @Column(nullable = false)
     private String title;
 
+    @JsonIgnore
     @ManyToMany(
             cascade = { CascadeType.PERSIST, CascadeType.MERGE }
     )
@@ -41,12 +43,14 @@ public class Book {
 
     private String coverImageUrl;
 
+    @JsonIgnore
     @ManyToOne(
             fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }
     )
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
+    @JsonIgnore
     @ManyToMany(
             cascade = { CascadeType.PERSIST, CascadeType.MERGE }
     )

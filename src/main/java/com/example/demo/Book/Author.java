@@ -1,4 +1,5 @@
 package com.example.demo.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class Author {
 
     @Column(name = "name", nullable = false) private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "bookAuthors")
     private Set<Book> books = new LinkedHashSet<>();
 }
