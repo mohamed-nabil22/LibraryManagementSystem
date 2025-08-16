@@ -18,7 +18,8 @@ public class Librarian {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto increment id
     private Long id;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY,
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
     @JoinColumn(name = "user_id", unique = true)
     private User user;
 

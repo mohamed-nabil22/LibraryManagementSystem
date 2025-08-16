@@ -1,5 +1,7 @@
 package com.example.demo.Book;
+
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +23,16 @@ public class Book {
     @Column(nullable = false)
     private String title;
 
-
-    private List<String> authors;  // multiple authors TODO: create author table
-
-    private String publisher;
-    private String category;
+    @ManyToMany(
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE }
+    )
+    @JoinTable(name = "book_categories",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
     private String language;
     private int publicationYear;
+    @Column(length = 20, unique = true)
     private String isbn;
     private String edition;
 
@@ -35,7 +41,39 @@ public class Book {
 
     private String coverImageUrl;
 
+    @ManyToOne(
+            fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }
+    )
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
+
+    @ManyToMany(
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE }
+    )
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> bookAuthors;
+
     int availableQuantity;
+
+    public void addAuthor(Author a) {
+        bookAuthors.add(a); // position determines author_order
+        a.getBooks().add(this);
+    }
+    public void removeAuthor(Author a) {
+        bookAuthors.remove(a);
+        a.getBooks().remove(this);
+    }
+    public void addCategory(Category c) {
+        categories.add(c);
+        c.getBooks().add(this);
+    }
+    public void removeCategory(Category c) {
+        categories.remove(c);
+        c.getBooks().remove(this);
+    }
 
 }
 

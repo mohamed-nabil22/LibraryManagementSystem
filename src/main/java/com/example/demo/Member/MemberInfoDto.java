@@ -1,4 +1,4 @@
-package com.example.demo.Admin;
+package com.example.demo.Member;
 
 import com.example.demo.User.User;
 import jakarta.persistence.*;
@@ -11,15 +11,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity @Table(name = "admins")
-public class Admin {
+public class MemberInfoDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto increment id
     private Long id;
-
-    @OneToOne(optional = false, fetch = FetchType.LAZY,
-            cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
-    @JoinColumn(name = "user_id", unique = true)
-    private User user;
+    private String email;
+    private String address;
+    private String phoneNumber;
+    private String userName;
 
 }

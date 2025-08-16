@@ -41,13 +41,13 @@ public class BookService {
         Book book = bookRepository.findBookById(bookId).get();
 
         book.setTitle(updatedBook.getTitle());
-        book.setAuthors(updatedBook.getAuthors());
+        book.setBookAuthors(updatedBook.getBookAuthors());
         book.setIsbn(updatedBook.getIsbn());
         book.setSummary(updatedBook.getSummary());
         book.setEdition(updatedBook.getEdition());
         book.setPublisher(updatedBook.getPublisher());
         book.setCoverImageUrl(updatedBook.getCoverImageUrl());
-        book.setCategory(updatedBook.getCategory());
+        book.setCategories(updatedBook.getCategories());
         book.setLanguage(updatedBook.getLanguage());
         book.setPublicationYear(updatedBook.getPublicationYear());
 

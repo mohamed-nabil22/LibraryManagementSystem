@@ -29,12 +29,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())  // Disable CSRF protection (for REST APIs)
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/auth/register/**").permitAll()
+                        .requestMatchers("/api/auth/register/admin").permitAll() // for debugging
+                        .requestMatchers("/api/auth/register/staff").hasRole("ADMIN")
+                        .requestMatchers("/api/auth/register/librarian").hasAnyRole("ADMIN")
+                        .requestMatchers("/api/auth/register/member").hasAnyRole("ADMIN", "LIBRARIAN", "STAFF")
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/librarian/**").hasAnyRole("ADMIN", "LIBRARIAN")
                         .requestMatchers("/api/staff/**").hasAnyRole("ADMIN", "LIBRARIAN", "STAFF")
-                        .requestMatchers("/member/**").hasRole("MEMBER")
-
+                        .requestMatchers("/books/staff/**").hasAnyRole("ADMIN", "LIBRARIAN", "STAFF")
                         .anyRequest().authenticated()  // All other requests must be authenticated
                 )
                 .formLogin(withDefaults())  // Default form login configuration

@@ -7,6 +7,7 @@ import lombok.Data;
 import java.util.Set;
 @Data
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +15,8 @@ public class User {
     private String username;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),

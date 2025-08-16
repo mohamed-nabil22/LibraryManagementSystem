@@ -1,4 +1,4 @@
-package com.example.demo.Admin;
+package com.example.demo.Staff;
 
 import com.example.demo.User.User;
 import jakarta.persistence.*;
@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity @Table(name = "admins")
-public class Admin {
+@Entity @Table(name = "staff")
+public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto increment id
     private Long id;
