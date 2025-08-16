@@ -25,9 +25,11 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getAllMembers());
     }
 
-    @PreAuthorize("hasRole('MEMBER')")
+//    @PreAuthorize("hasRole('MEMBER')")
     @GetMapping(path = "member/getInfo")
     public ResponseEntity<Member> getMemberInfo(Authentication auth) {
+        System.out.println("here!!!!! ");
+
         return ResponseEntity.ok(memberService.findByUserUsername(auth.getName()));
     }
 

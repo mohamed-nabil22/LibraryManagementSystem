@@ -21,7 +21,7 @@ public class Book {
     private String title;
 
 
-    private List<String> authors;  // multiple authors
+    private List<String> authors;  // multiple authors TODO: create author table
 
     private String publisher;
     private String category;
